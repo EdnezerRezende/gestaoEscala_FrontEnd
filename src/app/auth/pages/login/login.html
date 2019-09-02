@@ -1,0 +1,33 @@
+<ion-content padding>
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+    <div class="splash-intro">
+      Gestão de Escala
+    </div>
+  </div>
+  <div padding>
+    <form [formGroup]="authForm" (ngSubmit)="login(form.value)" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+          <ion-input type="email" name="username" placeholder="E-mail" inputmode="email" 
+              autofocus="true" formControlName="email"></ion-input>
+            </ion-item>
+        <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">Campo Requerido</ion-note>
+        <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">E-mail Inválido</ion-note>
+
+        <ion-item>
+          <ion-icon name="lock" color="primary" slot="start"></ion-icon>
+          <ion-input type="password" name="password" placeholder="Senha"  formControlName="password"></ion-input>
+        </ion-item>
+        <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">Campo Requerido</ion-note>
+        <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">Minímo 6 caracteres</ion-note>
+       
+        <ion-button expand="block" color="primary" type="submit" [disabled]="authForm.invalid">Login</ion-button>
+      </ion-list>
+
+      <ion-button expand="block" fill="clear"  type="button" (click)="signup()">Criar Conta</ion-button>
+    </form>
+  </div>
+</ion-content>
